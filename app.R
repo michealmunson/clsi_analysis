@@ -201,9 +201,9 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   data <- reactive({
-    loader <- req(input$upload)
+    loader <- input$upload
     if (is.null(loader)) {
-      return(NULL)
+      return(read.csv('default.csv'))
     }
     read.csv(loader$datapath)
     ext <- tools::file_ext(input$upload$name)
